@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": true,
+    "sourceRoot": "./src/",
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "strict": true,
+    "pretty": true,
+    "lib": ["es2015", "es2019", "es2016", "dom", "es2017", "es6", "es5"],
+    "paths": {
+      "@modules": ["src/modules"],
+      "@modules/*": ["src/modules/*"],
+      "@database": ["src/database"],
+      "@database/*": ["src/database/*"]
+    }
+  },
+  "include": ["src/*.ts", "src/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "src/mocks/**/*.ts",
+    "src/**/**/*.test.ts",
+    "src/__mocks__",
+    "babel.config.js",
+    "commitlint.config.js",
+    "dangerfile.js",
+    "jest.config.js",
+    ".gitlab",
+    ".git",
+    "tools"
+  ]
+}
