@@ -1,15 +1,25 @@
 import { Request, Response } from 'express';
-import { Item } from '@database/models';
+import { createItem, findAllItems } from '@modules/item/itemService';
+import { isItemValid } from './helpers';
 
-export const findAll = async (req: Request, res: Response): Promise<void> => {
+export const getItems = async (req: Request, res: Response): Promise<void> => {
   try {
-    const items = await Item.findAll();
+    const items = await findAllItems();
 
-    console.log({ items });
-
-    res.send({ items });
+    res.send({ data: items });
   } catch (e) {
-    console.log(e);
-    res.status(500).send({ messsage: 'tamos con problemas' });
+    res.status(404).send({ messsage: 'Error al obtener los items' });
+  }
+};
+
+export const addItem = async (req: Request, res: Response): Promise<void> => {
+  if (!isItemValid(req.body)) {
+    res.status(403).send('El formato del item es inválido');
+  }
+  try {
+    const item = await createItem(req.body);
+    res.status(201).send({ data: item });
+  } catch (e) {
+    res.status(500).send();
   }
 };

@@ -1,12 +1,10 @@
 import { Router } from 'express';
-import { findAll } from '@modules/item/itemController';
+import { addItem, getItems } from '@modules/item/itemController';
 
 const router = Router();
 
-router.get('/', findAll);
-router.post('/', (req, res) => {
-  console.log({ body: req.body });
-  res.send('ok');
-});
+router.get('/', getItems);
+
+router.post('/', addItem);
 
 export const ItemRouter = router;

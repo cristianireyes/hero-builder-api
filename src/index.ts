@@ -1,17 +1,19 @@
 import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
+import { APP_PORT } from '@app/env-config';
+import { v1Router } from '@app/api/v1';
 import { DBConnection } from '@database';
-import { v1Router } from './api/v1';
 
+const PORT = APP_PORT || 3000;
 const CORS_OPTIONS = {
   origin: 'http://localhost:8081',
 };
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(cors(CORS_OPTIONS));
+app.use(express.json());
 
 app.use('/api/v1', v1Router);
 

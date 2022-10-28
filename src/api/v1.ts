@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { ItemRouter } from '@modules/item';
 import { AuthRouter } from '@modules/auth';
 import { BuildRouter } from '@modules/build';
+import { ItemRouter } from '@modules/item';
 
 const router = Router();
 
 router.get('/', (req, res) => {
-  res.send('API root module');
+  // Retornar Swagger
+  res.status(404).send();
 });
 
 router.use('/auth', AuthRouter);
